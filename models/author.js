@@ -27,8 +27,16 @@ AuthorSchema.virtual("date_of_birth_formatted").get(function () {
     return this.date_of_birth ? DateTime.fromJSDate(this.date_of_birth).toLocaleString(DateTime.DATE_MED) : "";
 })
 
+AuthorSchema.virtual("date_of_birth_yyyy_mm_dd").get(function () {
+    return DateTime.fromJSDate(this.date_of_birth).toISODate(); // format 'YYYY-MM-DD'
+});  
+
 AuthorSchema.virtual("date_of_death_formatted").get(function () {
     return this.date_of_death ? DateTime.fromJSDate(this.date_of_death).toLocaleString(DateTime.DATE_MED) : "";
-})
+});
+
+AuthorSchema.virtual("date_of_death_yyyy_mm_dd").get(function () {
+    return DateTime.fromJSDate(this.date_of_death).toISODate(); // format 'YYYY-MM-DD'
+});  
 
 module.exports = mongoose.model("Author", AuthorSchema);
